@@ -22,7 +22,7 @@ Usage: GitHack.py http://www.target.com/.git/
 
 bug-report: my[at]lijiejie.com (http://www.lijiejie.com)
 """
-    print msg
+    print msg;
     sys.exit(0)
 
 
@@ -31,8 +31,8 @@ class Scanner(object):
         self.base_url = sys.argv[-1]
         self.domain = urlparse.urlparse(sys.argv[-1]).netloc.replace(':', '_')
         if not os.path.exists(self.domain):
-            os.mkdir(self.domain)
-        print '[+] Download and parse index file ...'
+            os.mkdir(self.domain);
+        print '[+] Download and parse index file ...';
         data = self._request_data(sys.argv[-1] + '/index')
         with open('index', 'wb') as f:
             f.write(data)
@@ -41,7 +41,7 @@ class Scanner(object):
             if "sha1" in entry.keys():
                 self.queue.put((entry["sha1"].strip(), entry["name"].strip()))
                 try:
-                    print entry['name']
+                    print entry['name'];
                 except Exception as e:
                     pass
         self.lock = threading.Lock()
@@ -57,6 +57,7 @@ class Scanner(object):
         self.lock.acquire()
         try:
             print msg
+            
         except Exception as e:
             pass
         self.lock.release()
